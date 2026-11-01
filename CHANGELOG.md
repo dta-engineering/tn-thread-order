@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.0.10 - 2026-11-01
+
+### Fixed
+
+- Added compatibility with Thunderbird 159.x, which refused to load 1.0.9 because its `strict_max_version` ceiling was `158.*`.
+- Repointed the self-hosted update manifest to this fork so automatic update checks resolve against releases published here instead of upstream.
+
+### Improved
+
+- Audited every Thunderbird internal the extension depends on against the Thunderbird 159.0 release sources. No code change was required: `msgHdrView.js`, `messageWindow.js`, `messenger-menubar.inc.xhtml` and `nsIMsgDBView.idl` are byte-identical between 158 and 159, and the only changes in `about3Pane.js` and `tree-view.mjs` touch drag-and-drop URI resolution, message saving, print-dialog error handling, thread-selection command events, and the column-picker button — none of which this extension hooks.
+
+### Notes
+
+- Compatibility was established by source-level audit plus package verification, not by a runtime test session: the audit host is aarch64 and Mozilla publishes no aarch64 Linux build of Thunderbird 159.
+- Preserved newest-first ordering, preview synchronization, Card View relationship indicators, native Table View appearance, message-header command routing, and existing context-command behavior from 1.0.9.
+
 ## 1.0.9 - 2026-10-16
 
 ### Fixed
